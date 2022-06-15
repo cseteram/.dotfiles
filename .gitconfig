@@ -12,10 +12,13 @@
 	defaultBranch = main
 [pull]
 	rebase = true
+[fetch]
+    prune = true
 [gpg]
-	format = ssh
+#	format = ssh
 [commit]
-#	gpgsign = yes
+#	gpgsign = true
+[status]
+    showStash = true
 [alias]
 	lg = log --all --decorate --oneline --graph
-	st = status --show-stash
