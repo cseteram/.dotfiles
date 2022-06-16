@@ -23,7 +23,9 @@ if [[ -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     zinit ice depth=1
     zinit light romkatv/powerlevel10k
 
-    # TODO : plugins
+    zinit light zsh-users/zsh-completions
+    zinit light zsh-users/zsh-autosuggestions
+    zinit light zdharma-continuum/fast-syntax-highlighting
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -44,6 +46,11 @@ fi
 # ~/.local/lib
 if [[ -d ~/.local/bin ]]; then
     export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+fi
+
+# fzf
+if [[ -f ~/.fzf.zsh ]]; then
+    source ~/.fzf.zsh
 fi
 
 # cargo
