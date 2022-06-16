@@ -3,6 +3,16 @@ set -euo pipefail
 
 BASEDIR=$(dirname "$0")
 
+# vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# fzf
+if [[ ! -d ~/.fzf ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --key-bindings --completion --no-update-rc
+fi
+
 # zsh
 ln -rsf ${BASEDIR}/.zshrc ~/.zshrc
 
@@ -14,6 +24,8 @@ ln -rsf ${BASEDIR}/.gitconfig ~/.gitconfig
 
 # vim
 ln -rsf ${BASEDIR}/.vimrc ~/.vimrc
+
+# ideavim
 ln -rsf ${BASEDIR}/.ideavimrc ~/.ideavimrc
 
-echo 'Finished!'
+echo 'Installation Complete!'
