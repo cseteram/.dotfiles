@@ -1,41 +1,53 @@
+" General
+set encoding=utf-8
+set fileencoding=utf-8
+set nocompatible
+set textwidth=120
+set scrolloff=3
+set startofline
+set number
+set backspace=indent,eol,start
+set autoread
+set nowrap
+set noswapfile
+set nobackup
+
+" Tab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smarttab
+set expandtab
+
 " Indent
 set cindent
 set autoindent
 set smartindent
 
-" Tab
-set tabstop=4
-set shiftwidth=4
-set smarttab
-set expandtab
-set nowrap
-
-" Line
-set number
+" Search
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set nowrapscan
 
 " Pair matching
 set matchpairs+=<:>
 set showmatch
 
-" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-
-" vim-plug automatic installation
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 " Vim plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+Plug 'editorconfig/editorconfig-vim'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
-" Initialize plugin system
 call plug#end()
 
 " set *.tsx filetypes as typescriptreact
@@ -56,4 +68,3 @@ execute 'hi tsxEqual ctermfg=210'
 
 " yellow
 execute printf('hi tsxAttrib ctermfg=216')
-
