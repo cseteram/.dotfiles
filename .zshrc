@@ -37,6 +37,11 @@ zstyle ':completion:*' menu select
 # term
 export TERM="xterm-256color"
 
+
+#
+# Path
+#
+
 # ~/.local/bin
 if [[ -d ~/.local/bin ]]; then
     export PATH="$HOME/.local/bin:$PATH"
@@ -86,6 +91,16 @@ fi
 if hash vim 2>/dev/null; then
     export EDITOR=vim
     alias vi='vim'
+fi
+
+#
+# Completions
+#
+autoload -U +X bashcompinit && bashcompinit
+
+## terraform
+if hash terraform 2>/dev/null; then
+    complete -o nospace -C /usr/bin/terraform terraform
 fi
 
 # Start Docker daemon automatically when logging in if not running.
