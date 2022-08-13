@@ -81,6 +81,18 @@ if [[ -d ~/.goenv ]]; then
     export PATH="$PATH:$GOPATH/bin"
 fi
 
+## rbenv
+if [[ -d ~/.rbenv ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init - zsh)"
+fi
+
+## pyenv
+if [[ -d ~/.pyenv ]]; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
 ## kubectx and kubens
 if [[ -d ~/.kubectx ]]; then
     export PATH="$HOME/.kubectx:$PATH"
