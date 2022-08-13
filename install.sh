@@ -2,6 +2,19 @@
 set -euo pipefail
 
 #
+# Check Prerequisites
+#
+
+## Dependences
+DEPENDENCES=("git" "zsh" "curl")
+for package in ${DEPENDENCES[@]}; do
+    if ! (hash $package 2>/dev/null); then
+        echo "$package not found"
+        exit 1
+    fi
+done
+
+#
 # Auto-installation
 #
 
