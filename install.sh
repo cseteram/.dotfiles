@@ -56,4 +56,8 @@ ln -rsf ${BASEDIR}/.vimrc ~/.vimrc
 ## ideavim
 ln -rsf ${BASEDIR}/.ideavimrc ~/.ideavimrc
 
+## htop
+mkdir -p ~/.config/htop
+ln -rsf "${BASEDIR}/htoprc" ~/.config/htop/htoprc
+
 echo 'Installation Complete!'
