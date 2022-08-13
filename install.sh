@@ -1,34 +1,46 @@
 #!/bin/bash
 set -euo pipefail
 
-BASEDIR=$(dirname "$0")
+#
+# Auto-installation
+#
 
-# zinit
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+## zinit
+if [[ ! -d ~/.local/share/zinit/zinit.git ]]; then
+    bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+fi
 
-# vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+## vim-plug
+if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
-# fzf
+## fzf
 if [[ ! -d ~/.fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --key-bindings --completion --no-update-rc
 fi
 
-# zsh
+#
+# Symlinking
+#
+
+BASEDIR=$(dirname "$0")
+
+## zsh
 ln -rsf ${BASEDIR}/.zshrc ~/.zshrc
 
-# p10k
+## p10k
 ln -rsf ${BASEDIR}/.p10k.zsh ~/.p10k.zsh
 
-# git
+## git
 ln -rsf ${BASEDIR}/.gitconfig ~/.gitconfig
 
-# vim
+## vim
 ln -rsf ${BASEDIR}/.vimrc ~/.vimrc
 
-# ideavim
+## ideavim
 ln -rsf ${BASEDIR}/.ideavimrc ~/.ideavimrc
 
 echo 'Installation Complete!'

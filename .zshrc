@@ -37,43 +37,42 @@ zstyle ':completion:*' menu select
 # term
 export TERM="xterm-256color"
 
-
 #
 # Path
 #
 
-# ~/.local/bin
+## ~/.local/bin
 if [[ -d ~/.local/bin ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# ~/.local/lib
-if [[ -d ~/.local/bin ]]; then
+## ~/.local/lib
+if [[ -d ~/.local/lib ]]; then
     export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 fi
 
-# fzf
+## fzf
 if [[ -f ~/.fzf.zsh ]]; then
     source ~/.fzf.zsh
 fi
 
-# cargo
+## cargo
 if [[ -d ~/.cargo ]]; then
     source "$HOME/.cargo/env"
 fi
 
-# yarn
+## yarn
 if [[ -d ~/.yarn ]]; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-# nodenv
+## nodenv
 if [[ -d ~/.nodenv ]]; then
     export PATH="$HOME/.nodenv/bin:$PATH"
     eval "$(nodenv init -)"
 fi
 
-# goenv
+## goenv
 if [[ -d ~/.goenv ]]; then
     export GOENV_ROOT="$HOME/.goenv"
     export PATH="$GOENV_ROOT/bin:$PATH"
@@ -82,12 +81,12 @@ if [[ -d ~/.goenv ]]; then
     export PATH="$PATH:$GOPATH/bin"
 fi
 
-#kubectx and kubens
+## kubectx and kubens
 if [[ -d ~/.kubectx ]]; then
     export PATH="$HOME/.kubectx:$PATH"
 fi
 
-# vim
+## vim
 if hash vim 2>/dev/null; then
     export EDITOR=vim
     alias vi='vim'
@@ -103,9 +102,16 @@ if hash terraform 2>/dev/null; then
     complete -o nospace -C /usr/bin/terraform terraform
 fi
 
-# Start Docker daemon automatically when logging in if not running.
-RUNNING=`ps aux | grep dockerd | grep -v grep`
-if [ -z "$RUNNING" ]; then
-    sudo dockerd > /dev/null 2>&1 &
-    disown
+#
+# Useful Scripts
+#
+
+# Docker
+if hash dockerd 2>/dev/null; then
+    # Start Docker daemon automatically when logging in if not running.
+    RUNNING=`ps aux | grep dockerd | grep -v grep`
+    if [ -z "$RUNNING" ]; then
+        sudo dockerd > /dev/null 2>&1 &
+        disown
+    fi
 fi

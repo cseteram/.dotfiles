@@ -14,7 +14,7 @@
 [fetch]
 	prune = true
 [gpg]
-#	format = ssh
+	format = ssh
 [commit]
 #	gpgsign = true
 [status]
