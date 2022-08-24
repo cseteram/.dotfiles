@@ -16,7 +16,7 @@
 [gpg]
 	format = ssh
 [commit]
-#	gpgsign = true
+	gpgsign = true
 [status]
 	showStash = true
 [alias]
