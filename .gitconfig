@@ -3,6 +3,7 @@
 	signingKey = ~/.ssh/id_ed25519.pub
 [core]
 	editor = vim
+	excludesfile = ~/.gitexclude
 [diff]
 	tool = vimdiff
 [merge]
