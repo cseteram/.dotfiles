@@ -50,15 +50,16 @@ if [[ -f ${ZINIT_HOME}/zinit.zsh ]]; then
     atpull"%atclone" \
     src"zpyenv.zsh" nocompile"!" sbin"bin/pyenv" \
     pyenv/pyenv
-  zinit wait"(( $+commands[pyenv] ))" lucid for \
-    atclone'
-      mkdir -p "$(pyenv root)"/plugins
-      ln -sf $PWD "$(pyenv root)"/plugins/pyenv-virtualenv
-      ./bin/pyenv-virtualenv-init - > zpyenv-virtualenv.zsh
-    ' \
-    atpull"%atclone" \
-    src"zpyenv-virtualenv.zsh" nocompile"!" \
-    pyenv/pyenv-virtualenv
+  # pyenv-virtualenv is temporarily disabled due to poor shell performance
+  # zinit wait"(( $+commands[pyenv] ))" lucid for \
+  #   atclone'
+  #     mkdir -p "$(pyenv root)"/plugins
+  #     ln -sf $PWD "$(pyenv root)"/plugins/pyenv-virtualenv
+  #     ./bin/pyenv-virtualenv-init - > zpyenv-virtualenv.zsh
+  #   ' \
+  #   atpull"%atclone" \
+  #   src"zpyenv-virtualenv.zsh" nocompile"!" \
+  #   pyenv/pyenv-virtualenv
 
   # rbenv
   zinit wait"" lucid for \
