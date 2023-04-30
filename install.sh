@@ -1,15 +1,14 @@
-#!/bin/bash
-set -euo pipefail
+#!/usr/bin/env zsh
 
 #
 # Check Prerequisites
 #
 
 ## Dependences
-DEPENDENCES=("git" "zsh" "curl")
-for package in ${DEPENDENCES[@]}; do
-    if ! (hash $package 2>/dev/null); then
-        echo "$package not found"
+packages=("git" "zsh" "curl")
+for package in ${packages[@]}; do
+    if ! command -v $package > /dev/null 2>&1; then
+        echo "$package is not installed"
         exit 1
     fi
 done
@@ -21,7 +20,7 @@ done
 ## zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [[ ! -d $ZINIT_HOME ]]; then
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+    env NO_INPUT=y NO_ANNEXES=y bash -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 fi
 
 ## vim-plug
